@@ -1,7 +1,7 @@
 from detrex.config import get_config
 from .models.rank_detr_r50 import model
 
-dataloader = get_config("datasets/register_coco_detection.py").dataloader
+dataloader = get_config("/kaggle/input/vjhvhjv/custom_dataset1.py").dataloader
 lr_multiplier = get_config("common/coco_schedule.py").lr_multiplier_50ep
 optimizer = get_config("common/optim.py").AdamW
 train = get_config("common/train.py").train
@@ -11,7 +11,7 @@ train.init_checkpoint = "detectron2://ImageNetPretrained/torchvision/R-50.pkl"
 train.output_dir = "./output/rank_detr_r50_50ep"
 
 # max training iterations
-train.max_iter = 375000
+train.max_iter = 31250
 
 # run evaluation every 5000 iters
 train.eval_period = 5000
