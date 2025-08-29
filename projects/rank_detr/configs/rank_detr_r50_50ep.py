@@ -1,7 +1,7 @@
 from detrex.config import get_config
 from .models.rank_detr_r50 import model
 
-dataloader = get_config("/kaggle/input/vjhvhjv/custom_dataset1.py").dataloader
+dataloader = get_config("common/custom.py").dataloader
 lr_multiplier = get_config("common/coco_schedule.py").lr_multiplier_50ep
 optimizer = get_config("common/optim.py").AdamW
 train = get_config("common/train.py").train
