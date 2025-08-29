@@ -16,8 +16,19 @@ from detrex.data import DetrDatasetMapper
 
 dataloader = OmegaConf.create()
 
-register_coco_instances("my_dataset_train", {}, '/path/to/train.json', '/path/to/train/images')
-register_coco_instances("my_dataset_test", {}, '/path/to/test.json', '/path/to/test/images')
+
+register_coco_instances(
+    "my_dataset_train",
+    {"thing_classes": ["Bus", "Car", "Person"]},
+    '/kaggle/working/annotations/train.json',
+    '/kaggle/input/data-private-bus-car-truck/Private_DTS/Images'
+)
+register_coco_instances(
+    "my_dataset_test",
+    {"thing_classes": ["Bus", "Car", "Person"]},
+    '/kaggle/working/annotations/train.json',
+    '/kaggle/input/data-private-bus-car-truck/Private_DTS/Images'
+)
 
 dataloader.train = L(build_detection_train_loader)(
     dataset=L(get_detection_dataset_dicts)(names="my_dataset_train"),
