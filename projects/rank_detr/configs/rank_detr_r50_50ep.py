@@ -3,6 +3,7 @@ from .models.rank_detr_r50 import model
 from detrex.data.datasets.register_my_dataset import register_my_dataset
 register_my_dataset()
 
+
 dataloader.train.dataset.names = "my_dataset_train"
 dataloader.test.dataset.names = "my_dataset_val"
 dataloader = get_config("common/data/custom.py").dataloader
