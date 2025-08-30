@@ -1,7 +1,6 @@
 from detrex.config import get_config
 from .models.rank_detr_r50 import model
-from .detrex.data.datasets.register_my_dataset import register_my_dataset
-
+from ..data.datasets.register_my_dataset import register_my_dataset
 register_my_dataset()
 
 
