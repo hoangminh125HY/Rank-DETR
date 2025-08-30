@@ -21,13 +21,13 @@ register_coco_instances(
     "my_dataset_train",
     {"thing_classes": ["Bus", "Car", "Person"]},
     '/kaggle/working/annotations/train.json',
-    '/kaggle/input/data-private-bus-car-truck/Private_DTS/Images'
+    '/kaggle/input/data-private-bus-car-truck/Private_DTS/Images/Images'
 )
 register_coco_instances(
     "my_dataset_test",
     {"thing_classes": ["Bus", "Car", "Person"]},
     '/kaggle/working/annotations/train.json',
-    '/kaggle/input/data-private-bus-car-truck/Private_DTS/Images'
+    '/kaggle/input/data-private-bus-car-truck/Private_DTS/Images/Images'
 )
 
 dataloader.train = L(build_detection_train_loader)(
