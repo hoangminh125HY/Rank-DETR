@@ -16,20 +16,22 @@ from detrex.data import DetrDatasetMapper
 
 dataloader = OmegaConf.create()
 
-
+# --- Register your custom dataset ---
 register_coco_instances(
     "my_dataset_train",
-    {"thing_classes": ["Bus", "Car", "Person"]},
+    {},
     "/kaggle/working/annotations/train.json",
-    '/kaggle/input/data-private-bus-car-truck/Private_DTS/Images/Images'
-)
-register_coco_instances(
-    "my_dataset_val",
-    {"thing_classes": ["Bus", "Car", "Person"]},
-    "/kaggle/working/annotations/val.json",
-    '/kaggle/input/data-private-bus-car-truck/Private_DTS/Images/Images'
+    "/kaggle/input/data-private-bus-car-truck/Private_DTS/Images/Images"
 )
 
+register_coco_instances(
+    "my_dataset_val",
+    {},
+    "/kaggle/working/annotations/val.json",
+    "/kaggle/input/data-private-bus-car-truck/Private_DTS/Images/Images"
+)
+
+# --- Train loader ---
 dataloader.train = L(build_detection_train_loader)(
     dataset=L(get_detection_dataset_dicts)(names="my_dataset_train"),
     mapper=L(DetrDatasetMapper)(
@@ -65,8 +67,9 @@ dataloader.train = L(build_detection_train_loader)(
     num_workers=4,
 )
 
+# --- Val loader ---
 dataloader.test = L(build_detection_test_loader)(
-    dataset=L(get_detection_dataset_dicts)(names="my_dataset_test", filter_empty=False),
+    dataset=L(get_detection_dataset_dicts)(names="my_dataset_val", filter_empty=False),
     mapper=L(DetrDatasetMapper)(
         augmentation=[
             L(T.ResizeShortestEdge)(
@@ -82,6 +85,7 @@ dataloader.test = L(build_detection_test_loader)(
     num_workers=1,
 )
 
+# --- Evaluator ---
 dataloader.evaluator = L(COCOEvaluator)(
-    dataset_name="${..test.dataset.names}",
+    dataset_name="my_dataset_val",   # ✅ fix chỗ này
 )
