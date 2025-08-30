@@ -1,16 +1,19 @@
 from detrex.config import get_config
 from .models.rank_detr_r50 import model
-from ..data.datasets.register_my_dataset import register_my_dataset
+from detrex.data.datasets.register_my_dataset import register_my_dataset
+
+# Đăng ký dataset COCO
 register_my_dataset()
 
-
+# Khởi tạo dataloader
+dataloader = get_config("common/data/custom.py").dataloader
 dataloader.train.dataset.names = "my_dataset_train"
 dataloader.test.dataset.names = "my_dataset_val"
-dataloader = get_config("common/data/custom.py").dataloader
+
+# Các config khác
 lr_multiplier = get_config("common/coco_schedule.py").lr_multiplier_50ep
 optimizer = get_config("common/optim.py").AdamW
 train = get_config("common/train.py").train
-
 # modify training config
 train.init_checkpoint = "detectron2://ImageNetPretrained/torchvision/R-50.pkl"
 train.output_dir = "./output/rank_detr_r50_50ep"
