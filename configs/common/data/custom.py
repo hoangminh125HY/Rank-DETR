@@ -79,7 +79,7 @@ dataloader.test = L(build_detection_test_loader)(
         mask_on=False,
         img_format="RGB",
     ),
-    num_workers=4,
+    num_workers=1,
 )
 
 dataloader.evaluator = L(COCOEvaluator)(
