@@ -20,13 +20,13 @@ dataloader = OmegaConf.create()
 register_coco_instances(
     "my_dataset_train",
     {"thing_classes": ["Bus", "Car", "Person"]},
-    '/kaggle/working/annotations/train.json',
+    "/kaggle/working/annotations/train.json",
     '/kaggle/input/data-private-bus-car-truck/Private_DTS/Images/Images'
 )
 register_coco_instances(
-    "my_dataset_test",
+    "my_dataset_val",
     {"thing_classes": ["Bus", "Car", "Person"]},
-    '/kaggle/working/annotations/train.json',
+    "/kaggle/working/annotations/val.json",
     '/kaggle/input/data-private-bus-car-truck/Private_DTS/Images/Images'
 )
 
