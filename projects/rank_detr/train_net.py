@@ -49,7 +49,18 @@ sys.path.append(os.path.abspath("/kaggle/working/Rank-DETR"))
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir)))
 
 logger = logging.getLogger("detrex")
+from detectron2.data.datasets import register_coco_instances
 
+register_coco_instances(
+    "my_dataset_train", {},
+    "/kaggle/working/annotations/train.json",
+    "/kaggle/input/data-private-bus-car-truck/Private_DTS/Images/Images"
+)
+register_coco_instances(
+    "my_dataset_val", {},
+    "/kaggle/working/annotations/val.json",
+    "/kaggle/input/data-private-bus-car-truck/Private_DTS/Images/Images"
+)
 
 def match_name_keywords(n, name_keywords):
     out = False
