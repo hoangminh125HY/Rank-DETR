@@ -216,6 +216,11 @@ class RankDetrTransformerDecoder(TransformerLayerSequence):
         valid_ratios=None,
         **kwargs,
     ):
+        
+        bs, num_queries, _ = query.shape  # lấy batch_size và số queries
+        if reference_points is None:
+        reference_points = torch.zeros(bs, num_queries, 4, device=query.device)
+
         output = query
         new_reference_points = reference_points  # đảm bảo luôn có biến này
 
