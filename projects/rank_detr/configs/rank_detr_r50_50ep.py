@@ -4,7 +4,6 @@ import sys
 sys.path.append("/kaggle/working/Rank-DETR/detrex/data/dataset_mappers")
 
 from register_my_dataset import register_my_dataset
-register_my_dataset()
 
 # Khởi tạo dataloader
 dataloader = get_config("common/data/custom.py").dataloader
