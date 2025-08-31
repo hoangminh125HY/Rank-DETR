@@ -16,7 +16,7 @@ _PREDEFINED_SPLITS = {
         "/kaggle/working/dataset/train.json",
         "/kaggle/working/dataset/train/images",
     ),
-    "my_dataset_val": (
+    "my_dataset_test": (
         "/kaggle/working/dataset/val.json",
         "/kaggle/working/dataset/val/images",
     ),

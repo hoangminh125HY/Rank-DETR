@@ -29,25 +29,7 @@ from detrex.utils import inverse_sigmoid
 
 from fairscale.nn.checkpoint import checkpoint_wrapper
 
-import torch.nn as nn
-import torch.nn.functional as F
 
-class MLP(nn.Module):
-    def __init__(self, input_dim, hidden_dim, output_dim, num_layers):
-        super().__init__()
-        layers = []
-        for i in range(num_layers):
-            in_dim = input_dim if i == 0 else hidden_dim
-            out_dim = output_dim if i == (num_layers - 1) else hidden_dim
-            layers.append(nn.Linear(in_dim, out_dim))
-        self.layers = nn.ModuleList(layers)
-
-    def forward(self, x):
-        for i, layer in enumerate(self.layers):
-            x = layer(x)
-            if i < len(self.layers) - 1:
-                x = F.relu(x)
-        return x
 class RankDetrTransformerEncoder(TransformerLayerSequence):
     def __init__(
         self,
@@ -143,7 +125,6 @@ class RankDetrTransformerDecoder(TransformerLayerSequence):
         two_stage_num_proposals=300,
         rank_adaptive_classhead=True,
         query_rank_layer=True,
-        num_classes: int = 3,
     ):
         super(RankDetrTransformerDecoder, self).__init__(
             transformer_layers=BaseTransformerLayer(
@@ -182,8 +163,8 @@ class RankDetrTransformerDecoder(TransformerLayerSequence):
         )
         self.return_intermediate = return_intermediate
 
-        self.class_embed = nn.ModuleList([nn.Linear(embed_dim, num_classes) for _ in range(num_layers)])
-        self.bbox_embed = nn.ModuleList([MLP(embed_dim, embed_dim, 4, 3) for _ in range(num_layers)])
+        self.bbox_embed = None
+        self.class_embed = None
         self.look_forward_twice = look_forward_twice
 
         # Rank-adaptive Classification Head
