@@ -21,7 +21,6 @@ _PREDEFINED_SPLITS = {
         "/kaggle/working/annotations/val.json",  # Đường dẫn tới file JSON val
     ),
 }
-
 def _get_my_dataset_meta():
     thing_ids = [k["id"] for k in MY_CATEGORIES]
     thing_dataset_id_to_contiguous_id = {k: i for i, k in enumerate(thing_ids)}
@@ -40,5 +39,3 @@ def register_my_dataset(root=None):  # Không cần root vì dùng đường d�
             image_root,  # Sử dụng đường dẫn tuyệt đối
         )
 
-# Đăng ký dataset
-register_my_dataset()
