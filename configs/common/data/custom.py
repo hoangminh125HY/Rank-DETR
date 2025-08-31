@@ -13,6 +13,7 @@ from detectron2.data.datasets import register_coco_instances
 from detectron2.evaluation import COCOEvaluator
 
 from detrex.data import DetrDatasetMapper
+from detectron2.data import DatasetCatalog
 
 dataloader = OmegaConf.create()
 
@@ -21,16 +22,16 @@ if "my_dataset_train" not in DatasetCatalog.list():
     register_coco_instances(
         "my_dataset_train",
         {},
-        "/kaggle/working/annotations/train.json",
-        "/kaggle/input/data-private-bus-car-truck/Private_DTS/Images/Images"
+        "/kaggle/working/dataset/train.json",
+        "/kaggle/working/dataset/train/images"
     )
 
 if "my_dataset_val" not in DatasetCatalog.list():
     register_coco_instances(
         "my_dataset_val",
         {},
-        "/kaggle/working/annotations/val.json",
-        "/kaggle/input/data-private-bus-car-truck/Private_DTS/Images/Images"
+        "/kaggle/working/dataset/val.json",
+        "/kaggle/working/dataset/val/images"
     )
 
 # --- Train loader ---

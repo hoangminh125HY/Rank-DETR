@@ -13,12 +13,12 @@ MY_CATEGORIES = [
 # Định nghĩa các split của dataset trên Kaggle
 _PREDEFINED_SPLITS = {
     "my_dataset_train": (
-        "/kaggle/working/annotations/train.json",
-        "/kaggle/input/data-private-bus-car-truck/Private_DTS/Images/Images",
+        "/kaggle/working/dataset/train.json",
+        "/kaggle/working/dataset/train/images",
     ),
     "my_dataset_val": (
-        "/kaggle/working/annotations/val.json",
-        "/kaggle/input/data-private-bus-car-truck/Private_DTS/Images/Images",
+        "/kaggle/working/dataset/val.json",
+        "/kaggle/working/dataset/val/images",
     ),
 }
 

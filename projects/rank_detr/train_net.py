@@ -53,13 +53,13 @@ from detectron2.data.datasets import register_coco_instances
 
 register_coco_instances(
     "my_dataset_train", {},
-    "/kaggle/working/annotations/train.json",
-    "/kaggle/input/data-private-bus-car-truck/Private_DTS/Images/Images"
+    "/kaggle/working/dataset/train.json",
+    "/kaggle/working/dataset/train/images"
 )
 register_coco_instances(
     "my_dataset_val", {},
-    "/kaggle/working/annotations/val.json",
-    "/kaggle/input/data-private-bus-car-truck/Private_DTS/Images/Images"
+    "/kaggle/working/dataset/val.json",
+    "/kaggle/working/dataset/val/images"
 )
 
 def match_name_keywords(n, name_keywords):
