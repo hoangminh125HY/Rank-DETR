@@ -1,7 +1,6 @@
 from detrex.config import get_config
 from .models.rank_detr_r50 import model
-from detrex.data.datasets.register_my_dataset import register_my_dataset
-
+from detrex.data.dataset_mappers.register_my_dataset import register_my_dataset
 # Đăng ký dataset COCO
 register_my_dataset()
 
