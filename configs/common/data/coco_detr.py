@@ -13,8 +13,9 @@ from detrex.data import DetrDatasetMapper
 
 dataloader = OmegaConf.create()
 
+# TRAIN
 dataloader.train = L(build_detection_train_loader)(
-    dataset=L(get_detection_dataset_dicts)(names="coco_2017_train"),
+    dataset=L(get_detection_dataset_dicts)(names="my_dataset_train"),
     mapper=L(DetrDatasetMapper)(
         augmentation=[
             L(T.RandomFlip)(),
@@ -44,12 +45,13 @@ dataloader.train = L(build_detection_train_loader)(
         mask_on=False,
         img_format="RGB",
     ),
-    total_batch_size=16,
+    total_batch_size=16,   # bạn có thể giảm xuống 8 nếu GPU RAM nhỏ
     num_workers=4,
 )
 
+# VAL
 dataloader.test = L(build_detection_test_loader)(
-    dataset=L(get_detection_dataset_dicts)(names="coco_2017_val", filter_empty=False),
+    dataset=L(get_detection_dataset_dicts)(names="my_dataset_val", filter_empty=False),
     mapper=L(DetrDatasetMapper)(
         augmentation=[
             L(T.ResizeShortestEdge)(
@@ -65,6 +67,7 @@ dataloader.test = L(build_detection_test_loader)(
     num_workers=4,
 )
 
+# EVALUATOR
 dataloader.evaluator = L(COCOEvaluator)(
-    dataset_name="${..test.dataset.names}",
+    dataset_name="${..test.dataset.names}",  # sẽ link tới my_dataset_val
 )

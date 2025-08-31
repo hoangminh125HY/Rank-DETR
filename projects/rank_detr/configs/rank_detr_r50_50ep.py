@@ -6,7 +6,7 @@ sys.path.append("/kaggle/working/Rank-DETR/detrex/data/dataset_mappers")
 from register_my_dataset import register_my_dataset
 
 # Khởi tạo dataloader
-dataloader = get_config("common/data/custom.py").dataloader
+dataloader = get_config("common/data/coco_detr.py").dataloader
 dataloader.train.dataset.names = "my_dataset_train"
 dataloader.test.dataset.names = "my_dataset_val"
 
