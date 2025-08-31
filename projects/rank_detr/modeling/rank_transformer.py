@@ -217,6 +217,7 @@ class RankDetrTransformerDecoder(TransformerLayerSequence):
         **kwargs,
     ):
         output = query
+        new_reference_points = reference_points  # đảm bảo luôn có biến này
 
         intermediate = []
         intermediate_reference_points = []
