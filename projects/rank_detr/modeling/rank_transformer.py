@@ -125,6 +125,7 @@ class RankDetrTransformerDecoder(TransformerLayerSequence):
         two_stage_num_proposals=300,
         rank_adaptive_classhead=True,
         query_rank_layer=True,
+        num_classes: int = 3,
     ):
         super(RankDetrTransformerDecoder, self).__init__(
             transformer_layers=BaseTransformerLayer(
@@ -163,8 +164,8 @@ class RankDetrTransformerDecoder(TransformerLayerSequence):
         )
         self.return_intermediate = return_intermediate
 
-        self.bbox_embed = None
-        self.class_embed = None
+        self.class_embed = nn.ModuleList([nn.Linear(embed_dim, num_classes) for _ in range(num_layers)])
+        self.bbox_embed = nn.ModuleList([MLP(embed_dim, embed_dim, 4, 3) for _ in range(num_layers)])
         self.look_forward_twice = look_forward_twice
 
         # Rank-adaptive Classification Head
