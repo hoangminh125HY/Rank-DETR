@@ -1,6 +1,9 @@
 from detrex.config import get_config
 from .models.rank_detr_r50 import model
-from detrex.data.dataset_mappers.register_my_dataset import register_my_dataset# Đăng ký dataset COCO
+import sys
+sys.path.append("/kaggle/working/Rank-DETR/detrex/data/dataset_mappers")
+
+from register_my_dataset import register_my_dataset
 register_my_dataset()
 
 # Khởi tạo dataloader
