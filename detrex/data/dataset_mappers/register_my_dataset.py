@@ -13,14 +13,15 @@ MY_CATEGORIES = [
 # Định nghĩa các split của dataset trên Kaggle
 _PREDEFINED_SPLITS = {
     "my_dataset_train": (
-        "/kaggle/input/data-private-bus-car-truck/Private_DTS/Images/Images",
         "/kaggle/working/annotations/train.json",
+        "/kaggle/input/data-private-bus-car-truck/Private_DTS/Images/Images",
     ),
     "my_dataset_val": (
-        "/kaggle/input/data-private-bus-car-truck/Private_DTS/Images/Images",
         "/kaggle/working/annotations/val.json",
+        "/kaggle/input/data-private-bus-car-truck/Private_DTS/Images/Images",
     ),
 }
+
 def _get_my_dataset_meta():
     thing_ids = [k["id"] for k in MY_CATEGORIES]
     thing_dataset_id_to_contiguous_id = {k: i for i, k in enumerate(thing_ids)}
@@ -31,11 +32,11 @@ def _get_my_dataset_meta():
     }
 
 def register_my_dataset(root=None):  # Không cần root vì dùng đường dẫn tuyệt đối
-    for key, (image_root, json_file) in _PREDEFINED_SPLITS.items():
+    for key, (json_file, image_root) in _PREDEFINED_SPLITS.items():  # Đúng thứ tự
         register_coco_instances(
             key,
             _get_my_dataset_meta(),
-            json_file,  # Sử dụng đường dẫn tuyệt đối
-            image_root,  # Sử dụng đường dẫn tuyệt đối
+            json_file,
+            image_root,
         )
 
