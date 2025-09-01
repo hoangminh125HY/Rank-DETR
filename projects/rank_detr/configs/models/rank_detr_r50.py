@@ -85,7 +85,7 @@ model = L(RankDETR)(
     ),
     embed_dim=256,
     num_classes=3,
-    num_queries_one2one=300,
+    num_queries_one2one=150,
     num_queries_one2many=600,
     aux_loss=True,
     with_box_refine=False,
