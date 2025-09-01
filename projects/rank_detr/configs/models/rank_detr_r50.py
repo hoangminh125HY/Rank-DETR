@@ -79,7 +79,7 @@ model = L(RankDETR)(
         num_feature_levels=4,
         num_queries_one2one="${..num_queries_one2one}",
         num_queries_one2many="${..num_queries_one2many}",
-        two_stage_num_proposals=900,
+        two_stage_num_proposals=750,
         mixed_selection=True,
         rank_adaptive_classhead="${..rank_adaptive_classhead}",
     ),
