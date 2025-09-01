@@ -258,7 +258,8 @@ class RankDetrTransformerDecoder(TransformerLayerSequence):
             else:
                 assert reference_points.shape[-1] == 2
                 reference_points_input = reference_points[:, :, None] * valid_ratios[:, None]
-
+            if query_pos is not None and query_pos.shape[1] != output.shape[1]:
+                query_pos = query_pos[:, :output.shape[1], :]
             output = layer(
                 output,
                 key,
