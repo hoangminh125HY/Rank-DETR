@@ -15,6 +15,6 @@ model.criterion.matcher.matcher_change_iter = 67500
 # modify training config
 train.init_checkpoint = "detectron2://ImageNetPretrained/torchvision/R-50.pkl"
 train.output_dir = "./output/rank_detr_r50_two_stage_12ep"
-train.max_iter = 3000
-train.eval_period = 500                 # eval mỗi 2 epoch
-train.checkpointer.period = 500
+train.max_iter = 20000
+train.eval_period = 1000                 # eval mỗi 2 epoch
+train.checkpointer.period = 1000
