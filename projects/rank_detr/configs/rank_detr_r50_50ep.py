@@ -19,10 +19,10 @@ train.init_checkpoint = "detectron2://ImageNetPretrained/torchvision/R-50.pkl"
 train.output_dir = "./output/rank_detr_r50_50ep"
 
 # max training iterations
-train.max_iter = 12500
+train.max_iter = 110640
 
 # run evaluation every 5000 iters
-train.eval_period = 2500
+train.eval_period = 5532
 
 # log training infomation every 20 iters
 train.log_period = 20
